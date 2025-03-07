@@ -1,0 +1,532 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yomogi&family=Yuji+Syuku&family=M+PLUS+1p:wght@100;300;400;500;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&family=Zen+Maru+Gothic:wght@300;400;500;700;900&family=Dela+Gothic+One&family=Zen+Old+Mincho:wght@400;500;600;700;900&family=Yusei+Magic&family=Kaisei+Decol:wght@400;500;700&family=Rampart+One&family=Reggae+One&family=Train+One&family=Stick&family=Klee+One:wght@400;600&family=Hina+Mincho&family=Kosugi+Maru&family=BIZ+UDMincho&family=BIZ+UDPMincho&family=Sawarabi+Mincho&family=Yuji+Boku&family=Yuji+Mai&display=swap');
+
+body {
+    background-color: #f9f9f5;
+    color: #333;
+    font-family: 'Noto Serif JP', serif;
+    padding: 0;
+    margin: 0;
+    line-height: 1.8;
+    overflow-x: hidden;
+    font-size: 1.4rem;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* 背景の時間変化 */
+body.daytime {
+    background-color: #f9f9f5;
+    color: #333;
+}
+
+body.sunset {
+    background-color: #fff1e6;
+    color: #553344;
+}
+
+body.night {
+    background-color: #1a1a2e;
+    color: #e6e6e6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 300vh; /* コンテンツの長さ確保 */
+}
+
+h1 {
+    font-family: 'Dela Gothic One', cursive;
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #1a1a1a;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    animation: titlePulse 6s ease-in-out infinite;
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+}
+
+body.sunset h1 {
+    color: #6d1a36;
+    text-shadow: 2px 2px 4px rgba(109, 26, 54, 0.2);
+}
+
+body.night h1 {
+    color: #e6e6e6;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.poem {
+    position: relative;
+}
+
+.section {
+    margin-bottom: 5rem;
+}
+
+.section-title {
+    font-family: 'Yuji Syuku', serif;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    transition: color 0.5s ease;
+}
+
+.verse {
+    margin-bottom: 3rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s ease, transform 1.2s ease, color 0.5s ease;
+}
+
+.verse.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.line {
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: block;
+    font-size: 1.5rem;
+}
+
+/* 明朝体フォントバリエーション - 拡張 */
+.mincho { font-family: 'Shippori Mincho', serif; }
+.noto-mincho { font-family: 'Noto Serif JP', serif; }
+.old-mincho { font-family: 'Zen Old Mincho', serif; }
+.kaisei { font-family: 'Kaisei Decol', serif; }
+.hina-mincho { font-family: 'Hina Mincho', serif; }
+.biz-mincho { font-family: 'BIZ UDMincho', serif; }
+.biz-p-mincho { font-family: 'BIZ UDPMincho', serif; }
+.sawarabi-mincho { font-family: 'Sawarabi Mincho', serif; }
+.yuji-boku { font-family: 'Yuji Boku', serif; }
+.yuji-mai { font-family: 'Yuji Mai', serif; }
+.klee-one { font-family: 'Klee One', cursive; }
+
+/* その他のフォント */
+.gothic { font-family: 'M PLUS 1p', sans-serif; }
+.maru-gothic { font-family: 'Zen Maru Gothic', sans-serif; }
+.handwriting { font-family: 'Yomogi', cursive; }
+.yusei { font-family: 'Yusei Magic', sans-serif; }
+.rampart { font-family: 'Rampart One', cursive; }
+.reggae { font-family: 'Reggae One', cursive; }
+.train { font-family: 'Train One', cursive; }
+.stick { font-family: 'Stick', sans-serif; }
+.kosugi-maru { font-family: 'Kosugi Maru', sans-serif; }
+
+.bold { font-weight: 700; }
+.extra-bold { font-weight: 900; }
+.light { font-weight: 300; }
+.thin { font-weight: 100; }
+.italic { font-style: italic; }
+
+.xl { font-size: 2.5rem; }
+.large { font-size: 2rem; }
+.medium { font-size: 1.7rem; }
+.small { font-size: 1.3rem; }
+.xs { font-size: 1.1rem; }
+
+.spaced { letter-spacing: 0.2em; }
+.very-spaced { letter-spacing: 0.4em; }
+.compressed { letter-spacing: -0.05em; }
+
+.emphasized { text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+.heavy-shadow { text-shadow: 3px 3px 6px rgba(0,0,0,0.3); }
+
+.faded { color: #666; transition: color 0.5s ease; }
+.dark { color: #000; transition: color 0.5s ease; }
+.highlight { background-color: rgba(255, 255, 200, 0.5); padding: 0 5px; transition: background-color 0.5s ease; }
+
+body.sunset .faded { color: #885566; }
+body.sunset .dark { color: #553344; }
+body.sunset .highlight { background-color: rgba(255, 222, 200, 0.5); }
+
+body.night .faded { color: #aaaaaa; }
+body.night .dark { color: #ffffff; }
+body.night .highlight { background-color: rgba(50, 50, 80, 0.5); }
+
+.centered { text-align: center; }
+.right { text-align: right; }
+.left { text-align: left; }
+
+.quote {
+    padding-left: 2em;
+    border-left: 3px solid #ddd;
+    transition: border-color 0.5s ease;
+}
+
+body.sunset .quote { border-left-color: #d58c7d; }
+body.night .quote { border-left-color: #4a4a6a; }
+
+/* 角度付きテキスト */
+.rotate-right {
+    display: inline-block;
+    transform: rotate(3deg);
+}
+
+.rotate-left {
+    display: inline-block;
+    transform: rotate(-3deg);
+}
+
+.rotate-more-right {
+    display: inline-block;
+    transform: rotate(8deg);
+}
+
+.rotate-more-left {
+    display: inline-block;
+    transform: rotate(-8deg);
+}
+
+.wavy {
+    display: inline-block;
+    animation: wavy 8s ease-in-out infinite;
+}
+
+@keyframes wavy {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    25% { transform: translateY(-8px) rotate(2deg); }
+    50% { transform: translateY(0) rotate(-1deg); }
+    75% { transform: translateY(8px) rotate(1deg); }
+}
+
+/* 拡張アニメーション */
+.float-text {
+    display: inline-block;
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.shake-text {
+    display: inline-block;
+    animation: shake 6s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%, 80%, 100% { transform: translateX(0); }
+    83% { transform: translateX(-5px) rotate(-2deg); }
+    86% { transform: translateX(5px) rotate(2deg); }
+    89% { transform: translateX(-5px) rotate(-1deg); }
+    92% { transform: translateX(5px) rotate(1deg); }
+    95% { transform: translateX(-3px) rotate(-0.5deg); }
+    98% { transform: translateX(3px) rotate(0.5deg); }
+}
+
+.balloon {
+    display: inline-block;
+    position: relative;
+    animation: balloon 12s ease-in-out infinite;
+}
+
+@keyframes balloon {
+    0% { transform: translateY(0) rotate(0deg); }
+    20% { transform: translateY(-20px) rotate(5deg); }
+    40% { transform: translateY(-40px) rotate(-5deg); }
+    60% { transform: translateY(-60px) rotate(3deg); }
+    80% { transform: translateY(-100px) rotate(-3deg); opacity: 0.7; }
+    100% { transform: translateY(-150px) rotate(0deg); opacity: 0; }
+}
+
+.fade-in-out {
+    animation: fadeInOut 6s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.pulsate {
+    animation: pulsate 4s ease-in-out infinite;
+}
+
+@keyframes pulsate {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.spin-slow {
+    display: inline-block;
+    animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.bounce {
+    display: inline-block;
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-15px); }
+    60% { transform: translateY(-7px); }
+}
+
+.scatter {
+    display: inline-block;
+    animation: scatter 20s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes scatter {
+    0% { transform: translate(0, 0) rotate(0); opacity: 1; }
+    50% { opacity: 1; }
+    100% { 
+        transform: translate(
+            calc(var(--random-x, 0) * 300px), 
+            calc(var(--random-y, 0) * -100px)
+        ) rotate(calc(var(--random-r, 0) * 180deg)); 
+        opacity: 0;
+    }
+}
+
+.blur-in-out {
+    animation: blurInOut 8s ease-in-out infinite;
+}
+
+@keyframes blurInOut {
+    0%, 100% { filter: blur(0); }
+    50% { filter: blur(2px); }
+}
+
+.swing {
+    display: inline-block;
+    transform-origin: top center;
+    animation: swing 5s ease-in-out infinite;
+}
+
+@keyframes swing {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(15deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(5deg); }
+    80% { transform: rotate(-5deg); }
+}
+
+.flicker {
+    animation: flicker 8s linear infinite;
+}
+
+@keyframes flicker {
+    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 1; }
+    20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.33; }
+}
+
+.drop-in {
+    animation: dropIn 1.5s ease-in-out;
+}
+
+@keyframes dropIn {
+    0% { transform: translateY(-100px); opacity: 0; }
+    60% { transform: translateY(20px); }
+    80% { transform: translateY(-10px); }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.vibrate {
+    animation: vibrate 0.3s linear infinite;
+}
+
+@keyframes vibrate {
+    0%, 100% { transform: translate(0); }
+    25% { transform: translate(2px, 2px); }
+    50% { transform: translate(-2px, -2px); }
+    75% { transform: translate(-2px, 2px); }
+}
+
+/* 特別なレイアウト効果 */
+.on-top {
+    position: relative;
+    z-index: 10;
+}
+
+.staggered {
+    margin-left: 2rem;
+}
+
+.special-background {
+    position: relative;
+    padding: 20px;
+    margin: 30px 0;
+}
+
+.special-background::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: -1;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+body.sunset .special-background::before {
+    background-color: rgba(255, 241, 230, 0.8);
+    box-shadow: 0 5px 15px rgba(109, 26, 54, 0.1);
+}
+
+body.night .special-background::before {
+    background-color: rgba(30, 30, 60, 0.8);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.spring-theme {
+    position: relative;
+}
+
+.spring-theme::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: linear-gradient(135deg, rgba(255,240,245,0.8), rgba(240,255,240,0.8));
+    z-index: -1;
+    border-radius: 10px;
+    border: 1px solid rgba(200,220,200,0.5);
+    transition: background 0.5s ease, border-color 0.5s ease;
+}
+
+body.sunset .spring-theme::before {
+    background: linear-gradient(135deg, rgba(255,223,186,0.8), rgba(255,240,230,0.8));
+    border-color: rgba(220,180,160,0.5);
+}
+
+body.night .spring-theme::before {
+    background: linear-gradient(135deg, rgba(30,30,50,0.8), rgba(40,40,70,0.8));
+    border-color: rgba(60,60,100,0.5);
+}
+
+.flower-petal {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: rgba(255, 230, 240, 0.7);
+    border-radius: 15px 0;
+    animation: falling 10s linear infinite;
+    z-index: -1;
+    transition: background-color 0.5s ease;
+}
+
+body.sunset .flower-petal {
+    background-color: rgba(255, 200, 180, 0.7);
+}
+
+body.night .flower-petal {
+    background-color: rgba(150, 150, 200, 0.3);
+}
+
+@keyframes falling {
+    0% { transform: translate(0, 0) rotate(0); opacity: 0; }
+    10% { opacity: 1; }
+    100% { 
+        transform: translate(
+            calc(var(--random-x, 0) * 100px), 
+            calc(100vh + 50px)
+        ) rotate(calc(var(--random-r, 0) * 360deg)); 
+        opacity: 0;
+    }
+}
+
+/* 時間帯表示 */
+.time-indicator {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    font-size: 0.8rem;
+    z-index: 100;
+    transition: background-color 0.5s ease;
+}
+
+body.sunset .time-indicator {
+    background-color: rgba(255, 223, 186, 0.7);
+}
+
+body.night .time-indicator {
+    background-color: rgba(30, 30, 60, 0.7);
+    color: #e6e6e6;
+}
+
+footer {
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 1rem;
+    color: #888;
+    transition: color 0.5s ease;
+}
+
+body.sunset footer {
+    color: #a67a7a;
+}
+
+body.night footer {
+    color: #aaaaaa;
+}
+
+/* スクロールバーのスタイル */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    transition: background-color 0.5s ease;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+    transition: background-color 0.5s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+body.sunset ::-webkit-scrollbar-track {
+    background: #fff1e6;
+}
+
+body.sunset ::-webkit-scrollbar-thumb {
+    background: #d58c7d;
+}
+
+body.sunset ::-webkit-scrollbar-thumb:hover {
+    background: #c27a6a;
+}
+
+body.night ::-webkit-scrollbar-track {
+    background: #1a1a2e;
+}
+
+body.night ::-webkit-scrollbar-thumb {
+    background: #4a4a6a;
+}
+
+body.night ::-webkit-scrollbar-thumb:hover {
+    background: #6a6a8a;
+}
