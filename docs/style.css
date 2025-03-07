@@ -9,23 +9,7 @@ body {
     line-height: 1.8;
     overflow-x: hidden;
     font-size: 1.4rem;
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-/* 背景の時間変化 */
-body.daytime {
-    background-color: #f9f9f5;
-    color: #333;
-}
-
-body.sunset {
-    background-color: #fff1e6;
-    color: #553344;
-}
-
-body.night {
-    background-color: #1a1a2e;
-    color: #e6e6e6;
+    transition: background-color 2s ease, color 2s ease;
 }
 
 .container {
@@ -36,24 +20,15 @@ body.night {
 }
 
 h1 {
-    font-family: 'Dela Gothic One', cursive;
+    /* 'Dela Gothic One'を削除 */
+    font-family: 'Yuji Syuku', serif;
     font-size: 4rem;
     text-align: center;
     margin-bottom: 2rem;
     color: #1a1a1a;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     animation: titlePulse 6s ease-in-out infinite;
-    transition: color 0.5s ease, text-shadow 0.5s ease;
-}
-
-body.sunset h1 {
-    color: #6d1a36;
-    text-shadow: 2px 2px 4px rgba(109, 26, 54, 0.2);
-}
-
-body.night h1 {
-    color: #e6e6e6;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
+    transition: color 2s ease, text-shadow 2s ease;
 }
 
 @keyframes titlePulse {
@@ -74,7 +49,7 @@ body.night h1 {
     font-size: 2.5rem;
     margin-bottom: 3rem;
     text-align: center;
-    transition: color 0.5s ease;
+    transition: color 2s ease;
 }
 
 .verse {
@@ -82,7 +57,7 @@ body.night h1 {
     position: relative;
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 1.2s ease, transform 1.2s ease, color 0.5s ease;
+    transition: opacity 1.2s ease, transform 1.2s ease, color 2s ease;
 }
 
 .verse.visible {
@@ -91,7 +66,7 @@ body.night h1 {
 }
 
 .line {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem; /* 変更前: 1.5rem、行間を15pxではなく1.5rem（相対単位）に */
     position: relative;
     display: block;
     font-size: 1.5rem;
@@ -140,17 +115,9 @@ body.night h1 {
 .emphasized { text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
 .heavy-shadow { text-shadow: 3px 3px 6px rgba(0,0,0,0.3); }
 
-.faded { color: #666; transition: color 0.5s ease; }
-.dark { color: #000; transition: color 0.5s ease; }
-.highlight { background-color: rgba(255, 255, 200, 0.5); padding: 0 5px; transition: background-color 0.5s ease; }
-
-body.sunset .faded { color: #885566; }
-body.sunset .dark { color: #553344; }
-body.sunset .highlight { background-color: rgba(255, 222, 200, 0.5); }
-
-body.night .faded { color: #aaaaaa; }
-body.night .dark { color: #ffffff; }
-body.night .highlight { background-color: rgba(50, 50, 80, 0.5); }
+.faded { color: #666; transition: color 2s ease; }
+.dark { color: #000; transition: color 2s ease; }
+.highlight { background-color: rgba(255, 255, 200, 0.5); padding: 0 5px; transition: background-color 2s ease; }
 
 .centered { text-align: center; }
 .right { text-align: right; }
@@ -159,11 +126,8 @@ body.night .highlight { background-color: rgba(50, 50, 80, 0.5); }
 .quote {
     padding-left: 2em;
     border-left: 3px solid #ddd;
-    transition: border-color 0.5s ease;
+    transition: border-color 2s ease;
 }
-
-body.sunset .quote { border-left-color: #d58c7d; }
-body.night .quote { border-left-color: #4a4a6a; }
 
 /* 角度付きテキスト */
 .rotate-right {
@@ -377,17 +341,7 @@ body.night .quote { border-left-color: #4a4a6a; }
     z-index: -1;
     border-radius: 5px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: background-color 0.5s ease, box-shadow 0.5s ease;
-}
-
-body.sunset .special-background::before {
-    background-color: rgba(255, 241, 230, 0.8);
-    box-shadow: 0 5px 15px rgba(109, 26, 54, 0.1);
-}
-
-body.night .special-background::before {
-    background-color: rgba(30, 30, 60, 0.8);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 2s ease, box-shadow 2s ease;
 }
 
 .spring-theme {
@@ -405,17 +359,7 @@ body.night .special-background::before {
     z-index: -1;
     border-radius: 10px;
     border: 1px solid rgba(200,220,200,0.5);
-    transition: background 0.5s ease, border-color 0.5s ease;
-}
-
-body.sunset .spring-theme::before {
-    background: linear-gradient(135deg, rgba(255,223,186,0.8), rgba(255,240,230,0.8));
-    border-color: rgba(220,180,160,0.5);
-}
-
-body.night .spring-theme::before {
-    background: linear-gradient(135deg, rgba(30,30,50,0.8), rgba(40,40,70,0.8));
-    border-color: rgba(60,60,100,0.5);
+    transition: background 2s ease, border-color 2s ease;
 }
 
 .flower-petal {
@@ -426,15 +370,7 @@ body.night .spring-theme::before {
     border-radius: 15px 0;
     animation: falling 10s linear infinite;
     z-index: -1;
-    transition: background-color 0.5s ease;
-}
-
-body.sunset .flower-petal {
-    background-color: rgba(255, 200, 180, 0.7);
-}
-
-body.night .flower-petal {
-    background-color: rgba(150, 150, 200, 0.3);
+    transition: background-color 2s ease;
 }
 
 @keyframes falling {
@@ -459,16 +395,7 @@ body.night .flower-petal {
     border-radius: 5px;
     font-size: 0.8rem;
     z-index: 100;
-    transition: background-color 0.5s ease;
-}
-
-body.sunset .time-indicator {
-    background-color: rgba(255, 223, 186, 0.7);
-}
-
-body.night .time-indicator {
-    background-color: rgba(30, 30, 60, 0.7);
-    color: #e6e6e6;
+    transition: background-color 2s ease, color 2s ease;
 }
 
 footer {
@@ -476,15 +403,7 @@ footer {
     margin-top: 4rem;
     font-size: 1rem;
     color: #888;
-    transition: color 0.5s ease;
-}
-
-body.sunset footer {
-    color: #a67a7a;
-}
-
-body.night footer {
-    color: #aaaaaa;
+    transition: color 2s ease;
 }
 
 /* スクロールバーのスタイル */
@@ -494,39 +413,15 @@ body.night footer {
 
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
-    transition: background-color 0.5s ease;
+    transition: background-color 2s ease;
 }
 
 ::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 5px;
-    transition: background-color 0.5s ease;
+    transition: background-color 2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
-}
-
-body.sunset ::-webkit-scrollbar-track {
-    background: #fff1e6;
-}
-
-body.sunset ::-webkit-scrollbar-thumb {
-    background: #d58c7d;
-}
-
-body.sunset ::-webkit-scrollbar-thumb:hover {
-    background: #c27a6a;
-}
-
-body.night ::-webkit-scrollbar-track {
-    background: #1a1a2e;
-}
-
-body.night ::-webkit-scrollbar-thumb {
-    background: #4a4a6a;
-}
-
-body.night ::-webkit-scrollbar-thumb:hover {
-    background: #6a6a8a;
 }
