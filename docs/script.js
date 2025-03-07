@@ -36,11 +36,11 @@ function createPetals() {
 
 // 時間帯表示の作成
 function createTimeIndicator() {
-    // const indicator = document.createElement('div');
-    // indicator.classList.add('time-indicator');
-    // indicator.textContent = '朝';
-    // document.body.appendChild(indicator);
-    // return indicator;
+    const indicator = document.createElement('div');
+    indicator.classList.add('time-indicator');
+    indicator.textContent = '朝';
+    document.body.appendChild(indicator);
+    return indicator;
 }
 
 // 明朝体のフォントリスト
