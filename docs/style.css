@@ -95,8 +95,8 @@ h1 {
 .stick { font-family: 'Stick', sans-serif; }
 .kosugi-maru { font-family: 'Kosugi Maru', sans-serif; }
 
-.bold { font-weight: 700; }
-.extra-bold { font-weight: 900; }
+.bold { font-weight: 100; }
+.extra-bold { font-weight: 700; }
 .light { font-weight: 300; }
 .thin { font-weight: 100; }
 .italic { font-style: italic; }
@@ -392,12 +392,12 @@ h1 {
     top: 10px;
     right: 10px;
     padding: 5px 10px;
-    background-color: transparent; /* 背景色を透明にする */
+    background-color: transparent !important; /* 背景色を透明にする */
     border-radius: 5px;
     font-size: 0.8rem;
     z-index: 100;
     transition: background-color 2s ease, color 2s ease;
-    color: transparent; /* 文字色を透明にする */
+    color: transparent !important; /* 文字色を透明にする */
 }
 
 footer {
