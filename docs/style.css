@@ -21,7 +21,6 @@ body {
 
 h1 {
     /* 'Dela Gothic One'を削除 */
-    font-family: 'Yuji Syuku', serif;
     font-size: 4rem;
     text-align: center;
     margin-bottom: 2rem;
@@ -66,7 +65,7 @@ h1 {
 }
 
 .line {
-    margin-bottom: 1.5rem; /* 変更前: 1.5rem、行間を15pxではなく1.5rem（相対単位）に */
+    margin-bottom: 15rem; /* 変更前: 1.5rem、行間を15pxではなく1.5rem（相対単位）に */
     position: relative;
     display: block;
     font-size: 1.5rem;
