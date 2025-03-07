@@ -92,43 +92,200 @@ function applyRandomFonts() {
     });
 }
 
+// スクロールに合わせた時間の変化（より自然な色の遷移）
+function updateTimeBasedStyles() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const docHeight = Math.max(
+        document.body.scrollHeight, 
+        document.body.offsetHeight,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
+    ) - window.innerHeight;
+    
+    const scrollPercentage = (scrollTop / docHeight) * 100;
+    const timeIndicator = document.querySelector('.time-indicator');
+    
+    // 背景色の計算
+    const getBgColor = (startPercentage) => {
+        // 朝の色（薄い青みがかった白）
+        const morningColor = { r: 249, g: 249, b: 245 };
+        
+        // 夕方の色（暖色系）
+        const sunsetColor = { r: 255, g: 241, b: 230 };
+        
+        // 夜の色（暗い青）
+        const nightColor = { r: 26, g: 26, b: 46 };
+        
+        // スクロール位置に応じた色の計算
+        let r, g, b;
+        
+        if (scrollPercentage < 50) {
+            // 朝から夕方への遷移
+            const transitionPercentage = scrollPercentage / 50; // 0-1の範囲に正規化
+            r = morningColor.r + (sunsetColor.r - morningColor.r) * transitionPercentage;
+            g = morningColor.g + (sunsetColor.g - morningColor.g) * transitionPercentage;
+            b = morningColor.b + (sunsetColor.b - morningColor.b) * transitionPercentage;
+            
+            // 時間帯表示の更新
+            if (scrollPercentage < 25) {
+                timeIndicator.textContent = '朝';
+            } else {
+                timeIndicator.textContent = '昼';
+            }
+        } else if (scrollPercentage < 75) {
+            // 夕方から夜への遷移
+            const transitionPercentage = (scrollPercentage - 50) / 25; // 0-1の範囲に正規化
+            r = sunsetColor.r + (nightColor.r - sunsetColor.r) * transitionPercentage;
+            g = sunsetColor.g + (nightColor.g - sunsetColor.g) * transitionPercentage;
+            b = sunsetColor.b + (nightColor.b - sunsetColor.b) * transitionPercentage;
+            
+            // 時間帯表示の更新
+            timeIndicator.textContent = '夕方';
+        } else {
+            // 完全な夜
+            r = nightColor.r;
+            g = nightColor.g;
+            b = nightColor.b;
+            
+            // 時間帯表示の更新
+            timeIndicator.textContent = '夜';
+        }
+        
+        return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
+    };
+    
+    // テキスト色の計算
+    const getTextColor = () => {
+        if (scrollPercentage < 50) {
+            // 朝から夕方への遷移
+            return `rgb(51, 51, 51)`;
+        } else if (scrollPercentage < 75) {
+            // 夕方から夜への遷移
+            const transitionPercentage = (scrollPercentage - 50) / 25; // 0-1の範囲に正規化
+            const r = 51 + (230 - 51) * transitionPercentage;
+            const g = 51 + (230 - 51) * transitionPercentage;
+            const b = 51 + (230 - 51) * transitionPercentage;
+            return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
+        } else {
+            // 完全な夜
+            return `rgb(230, 230, 230)`;
+        }
+    };
+    
+    // 背景色とテキスト色を設定
+    document.body.style.backgroundColor = getBgColor(scrollPercentage);
+    document.body.style.color = getTextColor();
+    
+    // タイトルの色を調整
+    const h1 = document.querySelector('h1');
+    if (scrollPercentage < 50) {
+        h1.style.color = '#1a1a1a';
+    } else if (scrollPercentage < 75) {
+        const transitionPercentage = (scrollPercentage - 50) / 25;
+        const r = 26 + (230 - 26) * transitionPercentage;
+        const g = 26 + (230 - 26) * transitionPercentage;
+        const b = 26 + (230 - 26) * transitionPercentage;
+        h1.style.color = `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
+    } else {
+        h1.style.color = '#e6e6e6';
+    }
+    
+    // 時間帯表示の背景色を調整
+    if (scrollPercentage < 50) {
+        timeIndicator.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+        timeIndicator.style.color = '#333';
+    } else if (scrollPercentage < 75) {
+        timeIndicator.style.backgroundColor = 'rgba(255, 241, 230, 0.7)';
+        timeIndicator.style.color = '#553344';
+    } else {
+        timeIndicator.style.backgroundColor = 'rgba(30, 30, 60, 0.7)';
+        timeIndicator.style.color = '#e6e6e6';
+    }
+    
+    // その他の要素にも同様に色の変化を適用（必要に応じて）
+    adjustSpecialElements(scrollPercentage);
+}
+
+// 特殊な要素の色調整
+function adjustSpecialElements(scrollPercentage) {
+    const specialBackgrounds = document.querySelectorAll('.special-background::before');
+    const springThemes = document.querySelectorAll('.spring-theme::before');
+    const flowerPetals = document.querySelectorAll('.flower-petal');
+    
+    // CSSは直接操作できないため、スタイルシートを使用
+    let style = document.getElementById('dynamic-styles');
+    if (!style) {
+        style = document.createElement('style');
+        style.id = 'dynamic-styles';
+        document.head.appendChild(style);
+    }
+    
+    let css = '';
+    
+    // スクロール位置に応じたスタイル変更
+    if (scrollPercentage < 50) {
+        // 朝から夕方への遷移
+        const transitionPercentage = scrollPercentage / 50;
+        const bgOpacity = 0.8;
+        
+        const bgR = Math.round(255);
+        const bgG = Math.round(255 - (15 * transitionPercentage));
+        const bgB = Math.round(255 - (15 * transitionPercentage));
+        
+        const springBgStart = `rgba(${255 - (15 * transitionPercentage)}, 240, 245, ${bgOpacity})`;
+        const springBgEnd = `rgba(240, ${255 - (15 * transitionPercentage)}, 240, ${bgOpacity})`;
+        
+        const petalR = Math.round(255);
+        const petalG = Math.round(230 - (30 * transitionPercentage));
+        const petalB = Math.round(240 - (60 * transitionPercentage));
+        
+        css += `.special-background::before { background-color: rgba(${bgR}, ${bgG}, ${bgB}, ${bgOpacity}); }`;
+        css += `.spring-theme::before { background: linear-gradient(135deg, ${springBgStart}, ${springBgEnd}); }`;
+        css += `.flower-petal { background-color: rgba(${petalR}, ${petalG}, ${petalB}, 0.7); }`;
+    } else if (scrollPercentage < 75) {
+        // 夕方から夜への遷移
+        const transitionPercentage = (scrollPercentage - 50) / 25;
+        const bgOpacity = 0.8;
+        
+        const bgR = Math.round(255 - (225 * transitionPercentage));
+        const bgG = Math.round(240 - (210 * transitionPercentage));
+        const bgB = Math.round(240 - (180 * transitionPercentage));
+        
+        const springBgStartR = Math.round(240 - (210 * transitionPercentage));
+        const springBgStartG = Math.round(225 - (195 * transitionPercentage));
+        const springBgStartB = Math.round(185 - (145 * transitionPercentage));
+        
+        const springBgEndR = Math.round(240 - (200 * transitionPercentage));
+        const springBgEndG = Math.round(240 - (200 * transitionPercentage));
+        const springBgEndB = Math.round(225 - (155 * transitionPercentage));
+        
+        const petalR = Math.round(255 - (105 * transitionPercentage));
+        const petalG = Math.round(200 - (50 * transitionPercentage));
+        const petalB = Math.round(180 + (20 * transitionPercentage));
+        
+        const springBgStart = `rgba(${springBgStartR}, ${springBgStartG}, ${springBgStartB}, ${bgOpacity})`;
+        const springBgEnd = `rgba(${springBgEndR}, ${springBgEndG}, ${springBgEndB}, ${bgOpacity})`;
+        
+        css += `.special-background::before { background-color: rgba(${bgR}, ${bgG}, ${bgB}, ${bgOpacity}); }`;
+        css += `.spring-theme::before { background: linear-gradient(135deg, ${springBgStart}, ${springBgEnd}); }`;
+        css += `.flower-petal { background-color: rgba(${petalR}, ${petalG}, ${petalB}, 0.7); }`;
+    } else {
+        // 完全な夜
+        const bgOpacity = 0.8;
+        
+        css += `.special-background::before { background-color: rgba(30, 30, 60, ${bgOpacity}); }`;
+        css += `.spring-theme::before { background: linear-gradient(135deg, rgba(30, 30, 50, ${bgOpacity}), rgba(40, 40, 70, ${bgOpacity})); }`;
+        css += `.flower-petal { background-color: rgba(150, 150, 200, 0.3); }`;
+    }
+    
+    style.innerHTML = css;
+}
+
 // スクロールに合わせてアニメーション
 document.addEventListener('DOMContentLoaded', function() {
     const verses = document.querySelectorAll('.verse');
-    const body = document.body;
     const timeIndicator = createTimeIndicator();
-    
-    // スクロール位置に応じた時間帯の更新
-    function updateTimeOfDay() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const docHeight = Math.max(
-            document.body.scrollHeight, 
-            document.body.offsetHeight,
-            document.documentElement.clientHeight,
-            document.documentElement.scrollHeight,
-            document.documentElement.offsetHeight
-        ) - window.innerHeight;
-        
-        const scrollPercentage = (scrollTop / docHeight) * 100;
-        
-        // スクロール位置に応じて背景を変更
-        if (scrollPercentage < 60) {
-            // 朝
-            body.classList.remove('sunset', 'night');
-            body.classList.add('daytime');
-            timeIndicator.textContent = '朝';
-        } else if (scrollPercentage < 80) {
-            // 夕方
-            body.classList.remove('daytime', 'night');
-            body.classList.add('sunset');
-            timeIndicator.textContent = '夕方';
-        } else {
-            // 夜
-            body.classList.remove('daytime', 'sunset');
-            body.classList.add('night');
-            timeIndicator.textContent = '夜';
-        }
-    }
     
     function checkVisibility() {
         verses.forEach(verse => {
@@ -140,8 +297,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // 時間帯の更新
-        updateTimeOfDay();
+        // 時間帯に基づくスタイルの更新
+        updateTimeBasedStyles();
     }
     
     // 散る要素に乱数を設定
