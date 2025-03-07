@@ -243,19 +243,21 @@ h1 {
 
 .scatter {
     display: inline-block;
-    animation: scatter 20s ease-in-out;
-    animation-fill-mode: forwards;
+    animation: scatter 20s ease-in-out infinite; /* infinite を追加 */
 }
 
 @keyframes scatter {
     0% { transform: translate(0, 0) rotate(0); opacity: 1; }
     50% { opacity: 1; }
-    100% { 
+    99% { 
         transform: translate(
             calc(var(--random-x, 0) * 300px), 
             calc(var(--random-y, 0) * -100px)
         ) rotate(calc(var(--random-r, 0) * 180deg)); 
         opacity: 0;
+    }
+    100% {
+        transform: translate(0, 0) rotate(0); opacity: 1;
     }
 }
 
