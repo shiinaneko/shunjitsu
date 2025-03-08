@@ -23,7 +23,7 @@ h1 {
     /* 'Dela Gothic One'を削除 */
     font-size: 4rem;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 10rem;
     color: #1a1a1a;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     animation: titlePulse 6s ease-in-out infinite;
@@ -65,7 +65,7 @@ h1 {
 }
 
 .line {
-    margin-bottom: 15rem; /* 変更前: 1.5rem、行間を15pxではなく1.5rem（相対単位）に */
+    margin-bottom: 10rem; /* 変更前: 1.5rem、行間を15pxではなく1.5rem（相対単位）に */
     position: relative;
     display: block;
     font-size: 1.5rem;
