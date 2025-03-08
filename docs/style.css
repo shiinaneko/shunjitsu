@@ -65,10 +65,10 @@ h1 {
 }
 
 .line {
-    margin-bottom: 10rem; /* 変更前: 1.5rem、行間を15pxではなく1.5rem（相対単位）に */
+    margin-bottom: 15rem; /* 変更前: 1.5rem、行間を15pxではなく1.5rem（相対単位）に */
     position: relative;
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.0rem;
 }
 
 /* 明朝体フォントバリエーション - 拡張 */
